@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 @Table(name="persona")
 public class Persona {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)    
+    @GeneratedValue(strategy=GenerationType.IDENTITY)    
     private Long id;
 
     private String nombre;

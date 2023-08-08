@@ -28,4 +28,18 @@ public class PersonaService {
     public Optional<Persona> findById (Long id) {
         return personaRepository.findById(id);
     }
+    public Persona update(Persona persona) {
+        Optional<Persona> personaOptional = personaRepository.findById(persona.getId());
+        
+        if (personaOptional.isPresent()) {
+            Persona existingPersona = personaOptional.get();
+            existingPersona.setNombre(persona.getNombre()); 
+            existingPersona.setApellido(persona.getApellido());
+            existingPersona.setCorreo(persona.getCorreo());
+            
+            return personaRepository.save(existingPersona);
+        } else {
+            throw new RuntimeException("Persona no encontrada con ID: " + persona.getId());
+        }
+    }
 }
